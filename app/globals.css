@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  /* Custom component styles using design tokens */
+  .btn-primary {
+    @apply bg-primary text-white px-6 py-3 rounded-xl font-medium shadow-soft hover:bg-primary-600 transition-colors duration-200 focus:outline-none focus:ring-4 focus:ring-primary-200;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary-100 text-secondary-800 px-6 py-3 rounded-xl font-medium shadow-soft hover:bg-secondary-200 transition-colors duration-200 focus:outline-none focus:ring-4 focus:ring-secondary-200;
+  }
+
+  .btn-success {
+    @apply bg-success text-white px-6 py-3 rounded-xl font-medium shadow-soft hover:bg-success-600 transition-colors duration-200 focus:outline-none focus:ring-4 focus:ring-success-200;
+  }
+
+  .btn-warning {
+    @apply bg-warning text-white px-6 py-3 rounded-xl font-medium shadow-soft hover:bg-warning-600 transition-colors duration-200 focus:outline-none focus:ring-4 focus:ring-warning-200;
+  }
+
+  .btn-error {
+    @apply bg-error text-white px-6 py-3 rounded-xl font-medium shadow-soft hover:bg-error-600 transition-colors duration-200 focus:outline-none focus:ring-4 focus:ring-error-200;
+  }
+
+  .card {
+    @apply bg-white rounded-2xl shadow-medium p-card border border-secondary-100;
+  }
+
+  .timer-display {
+    @apply font-display text-timer-large text-center font-bold tracking-tight;
+  }
+
+  .section-spacing {
+    @apply py-section;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Poppins:wght@100..900&family=Fira+Code:wght@300..700&display=swap');
