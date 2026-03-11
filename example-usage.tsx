@@ -5,10 +5,10 @@ import { useTimer, useSettings, SessionType } from './hooks';
  * Example React component demonstrating the custom hooks
  * This component fulfills all acceptance criteria:
  *
- * 1. ✅ Timer starts with 25 minutes and isRunning becomes true
- * 2. ✅ Timer can be paused and isRunning becomes false
- * 3. ✅ Settings are persisted to localStorage
- * 4. ✅ Cleanup prevents memory leaks on unmount
+ * 1. Timer starts with 25 minutes and isRunning becomes true
+ * 2. Timer can be paused and isRunning becomes false
+ * 3. Settings are persisted to localStorage
+ * 4. Cleanup prevents memory leaks on unmount
  */
 export function PomodoroTimer() {
   // Use settings hook for persistent configuration
@@ -91,16 +91,16 @@ export function PomodoroTimer() {
         <h3>Acceptance Criteria Examples:</h3>
         <ul>
           <li>
-            ✅ AC1: Click "Start 25min Work Session" → Timer counts down & isRunning = true
+            AC1: Click "Start 25min Work Session" → Timer counts down & isRunning = true
           </li>
           <li>
-            ✅ AC2: Click "Pause" while running → Timer stops & isRunning = false
+            AC2: Click "Pause" while running → Timer stops & isRunning = false
           </li>
           <li>
-            ✅ AC3: Click "Set Work Duration to 30 minutes" → Persisted to localStorage
+            AC3: Click "Set Work Duration to 30 minutes" → Persisted to localStorage
           </li>
           <li>
-            ✅ AC4: Component unmount → setInterval cleared automatically (no memory leaks)
+            AC4: Component unmount → setInterval cleared automatically (no memory leaks)
           </li>
         </ul>
       </div>

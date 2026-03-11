@@ -39,7 +39,7 @@ const {
 } = useSettings();
 
 // Update work duration to 30 minutes
-updateWorkDuration(30); // ✅ Persisted to localStorage
+updateWorkDuration(30); // Persisted to localStorage
 ```
 
 ### ⏱️ `useTimer`
@@ -67,20 +67,20 @@ const {
 } = useTimer(() => console.log('Timer completed!'));
 
 // Start 25-minute work session
-start(25 * 60, SessionType.WORK); // ✅ isRunning becomes true
+start(25 * 60, SessionType.WORK); // isRunning becomes true
 
 // Pause the timer
-pause(); // ✅ isRunning becomes false
+pause(); // isRunning becomes false
 ```
 
-## Acceptance Criteria ✅
+## Acceptance Criteria
 
 All acceptance criteria are fully implemented:
 
-1. **✅ Timer Start**: `start()` method creates countdown with `isRunning: true`
-2. **✅ Timer Pause**: `pause()` method stops timer with `isRunning: false`
-3. **✅ Settings Persistence**: `updateWorkDuration(30)` persists to localStorage immediately
-4. **✅ Memory Leak Prevention**: Automatic cleanup prevents memory leaks on component unmount
+1. **Timer Start**: `start()` method creates countdown with `isRunning: true`
+2. **Timer Pause**: `pause()` method stops timer with `isRunning: false`
+3. **Settings Persistence**: `updateWorkDuration(30)` persists to localStorage immediately
+4. **Memory Leak Prevention**: Automatic cleanup prevents memory leaks on component unmount
 
 ## TypeScript Support
 
