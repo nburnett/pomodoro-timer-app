@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer Controls Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .timer-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            min-width: 300px;
+        }
+        .timer-display {
+            font-size: 4rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 2rem;
+            font-family: monospace;
+        }
+        .timer-display.running {
+            color: #e74c3c;
+        }
+        .status {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+            margin-bottom: 2rem;
+            text-transform: capitalize;
+        }
+        .controls {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        button {
+            padding: 12px 24px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            min-width: 100px;
+            transition: all 0.2s ease;
+        }
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .start-btn {
+            background-color: #27ae60;
+            color: white;
+        }
+        .pause-btn {
+            background-color: #f39c12;
+            color: white;
+        }
+        .reset-btn {
+            background-color: #e74c3c;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="timer-container">
+        <h1>Pomodoro Timer</h1>
+        <div class="timer-display" id="display">25:00</div>
+        <div class="status" id="status">Status: stopped</div>
+        <div class="controls">
+            <button class="start-btn" id="startBtn" onclick="start()">Start</button>
+            <button class="pause-btn" id="pauseBtn" onclick="pause()" onkeydown="handlePauseKeyDown(event)" disabled>Pause</button>
+            <button class="reset-btn" id="resetBtn" onclick="reset()">Reset</button>
+        </div>
+    </div>
+
+    <script>
+        let timeLeft = 25 * 60; // 25 minutes in seconds
+        let status = 'stopped';
+        let interval = null;
+        const initialTime = 25 * 60;
+
+        function formatTime(seconds) {
+            const minutes = Math.floor(seconds / 60);
+            const remainingSeconds = seconds % 60;
+            return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
+        }
+
+        function updateDisplay() {
+            document.getElementById('display').textContent = formatTime(timeLeft);
+            document.getElementById('status').textContent = `Status: ${status}`;
+
+            const display = document.getElementById('display');
+            const startBtn = document.getElementById('startBtn');
+            const pauseBtn = document.getElementById('pauseBtn');
+
+            if (status === 'running') {
+                display.classList.add('running');
+                startBtn.disabled = true;
+                pauseBtn.disabled = false;
+            } else {
+                display.classList.remove('running');
+                startBtn.disabled = false;
+                pauseBtn.disabled = true;
+            }
+        }
+
+        function start() {
+            if (status === 'running') return;
+
+            status = 'running';
+            updateDisplay();
+
+            interval = setInterval(() => {
+                timeLeft--;
+                if (timeLeft <= 0) {
+                    status = 'stopped';
+                    timeLeft = 0;
+                    clearInterval(interval);
+                    interval = null;
+                }
+                updateDisplay();
+            }, 1000);
+        }
+
+        function pause() {
+            if (status !== 'running') return;
+
+            status = 'paused';
+            clearInterval(interval);
+            interval = null;
+            updateDisplay();
+        }
+
+        function reset() {
+            status = 'stopped';
+            timeLeft = initialTime;
+            if (interval) {
+                clearInterval(interval);
+                interval = null;
+            }
+            updateDisplay();
+        }
+
+        function handlePauseKeyDown(event) {
+            if (event.key === 'Enter') {
+                pause();
+            }
+        }
+
+        // Initialize display
+        updateDisplay();
+    </script>
+</body>
+</html>
