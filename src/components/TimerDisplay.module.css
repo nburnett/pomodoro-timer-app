@@ -1,0 +1,165 @@
+/* Timer Display Component Styles */
+.timer-display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 200px;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.timer-display__container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 300px;
+  width: 100%;
+  aspect-ratio: 1;
+}
+
+.timer-display__progress-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.timer-display__progress-ring {
+  width: 100%;
+  height: 100%;
+  max-width: 200px;
+  max-height: 200px;
+}
+
+.timer-display__progress-background {
+  stroke: #e5e7eb;
+  opacity: 0.3;
+}
+
+.timer-display__progress-foreground {
+  stroke: #3b82f6;
+  transition: stroke-dashoffset 0.3s ease-in-out;
+}
+
+.timer-display__time {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+.timer-display__time-text {
+  font-family: 'Courier New', monospace;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #1f2937;
+  text-align: center;
+  line-height: 1;
+  user-select: none;
+}
+
+/* Mobile-first responsive breakpoints */
+@media (max-width: 320px) {
+  .timer-display {
+    min-height: 150px;
+    padding: 0.5rem;
+  }
+
+  .timer-display__container {
+    max-width: 200px;
+  }
+
+  .timer-display__progress-ring {
+    max-width: 150px;
+    max-height: 150px;
+  }
+
+  .timer-display__time-text {
+    font-size: 1.25rem;
+  }
+}
+
+@media (min-width: 321px) and (max-width: 480px) {
+  .timer-display {
+    min-height: 180px;
+  }
+
+  .timer-display__container {
+    max-width: 250px;
+  }
+
+  .timer-display__progress-ring {
+    max-width: 180px;
+    max-height: 180px;
+  }
+
+  .timer-display__time-text {
+    font-size: 1.5rem;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .timer-display {
+    min-height: 220px;
+  }
+
+  .timer-display__container {
+    max-width: 280px;
+  }
+
+  .timer-display__progress-ring {
+    max-width: 200px;
+    max-height: 200px;
+  }
+
+  .timer-display__time-text {
+    font-size: 1.75rem;
+  }
+}
+
+@media (min-width: 769px) {
+  .timer-display {
+    min-height: 250px;
+  }
+
+  .timer-display__container {
+    max-width: 300px;
+  }
+
+  .timer-display__progress-ring {
+    max-width: 220px;
+    max-height: 220px;
+  }
+
+  .timer-display__time-text {
+    font-size: 2rem;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .timer-display__progress-background {
+    stroke: #000000;
+    opacity: 0.2;
+  }
+
+  .timer-display__progress-foreground {
+    stroke: #0000ff;
+  }
+
+  .timer-display__time-text {
+    color: #000000;
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .timer-display__progress-foreground {
+    transition: none;
+  }
+}
